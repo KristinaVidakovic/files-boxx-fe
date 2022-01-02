@@ -1,5 +1,13 @@
+<script>
+import Hero from './components/Hero.vue'
+
+export default({
+  components: {
+    Hero,
+  },
+})
+</script>
+
 <template>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+  <Hero />
 </template>
