@@ -1,7 +1,9 @@
+import NotFound from "./components/NotFound";
+
 function App() {
   return (
     <div>
-      hello world
+      <NotFound />
     </div>
   );
 }
