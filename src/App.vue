@@ -6,6 +6,7 @@ export default{
     Hero,
   },
 }
+
 </script>
 
 <template>
