@@ -1,14 +1,14 @@
 <script>
-import Hero from './components/Hero.vue'
+import Button from './components/Button/index.vue';
 
 export default{
   components: {
-    Hero,
-  },
+    Button
+},
 }
 
 </script>
 
 <template>
-  <Hero />
+  <Button/>
 </template>
