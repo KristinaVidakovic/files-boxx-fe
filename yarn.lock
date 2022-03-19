@@ -204,6 +204,11 @@
     "@vue/compiler-dom" "3.2.31"
     "@vue/shared" "3.2.31"
 
+"@vue/devtools-api@^6.0.0-beta.15":
+  version "6.1.3"
+  resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.1.3.tgz#a44c52e8fa6d22f84db3abdcdd0be5135b7dd7cf"
+  integrity sha512-79InfO2xHv+WHIrH1bHXQUiQD/wMls9qBk6WVwGCbdwP7/3zINtvqPNMtmSHXsIKjvUAHc8L0ouOj6ZQQRmcXg==
+
 "@vue/reactivity-transform@3.2.31":
   version "3.2.31"
   resolved "https://registry.yarnpkg.com/@vue/reactivity-transform/-/reactivity-transform-3.2.31.tgz#0f5b25c24e70edab2b613d5305c465b50fc00911"
@@ -1378,6 +1383,13 @@ util-deprecate@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
+
+vee-validate@^4.5.10:
+  version "4.5.10"
+  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-4.5.10.tgz#425d4ca1e317361b86f7deb6600daec8942e9b90"
+  integrity sha512-7dZE0PZTNY3Ztp6Gz8iw+QS7Fz59vU1qkD0rBJkldkf9Faw2lFjWgE0tiCist5RQkLgt7/HaVbojzb/SCdutfA==
+  dependencies:
+    "@vue/devtools-api" "^6.0.0-beta.15"
 
 vite@^2.8.0:
   version "2.8.6"
