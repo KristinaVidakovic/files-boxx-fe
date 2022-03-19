@@ -14,7 +14,8 @@
     "postcss": "^8.4.12",
     "tailwindcss": "^3.0.23",
     "vee-validate": "^4.5.10",
-    "vue": "^3.2.25"
+    "vue": "^3.2.25",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.2.0",
