@@ -9,7 +9,7 @@
           class="card bg-red-400 shadow-lg w-full h-full rounded-3xl absolute transform rotate-6"
         ></div>
         <div class="relative w-full rounded-3xl px-6 py-4 bg-gray-100 shadow-md">
-          <div class="flex items-center relative px-4 pt-4 w-full">
+          <div class="flex items-center relative justify-center pt-4 w-full">
             <img :src="logo" class="w-12 h-12" />
             <div class="ml-3">
               <p class="font-medium text-gray-800">Welcome to FilesBoxx</p>
