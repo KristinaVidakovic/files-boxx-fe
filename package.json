@@ -1,16 +1,8 @@
 {
-  "name": "react-tailwindcss-typescript-vite-template",
+  "name": "Files-Boxx",
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
-  "author": {
-    "email": "rohidul209@gmail.com",
-    "name": "Rohid",
-    "url": "https://rohidulislam.com"
-  },
-  "repository": {
-    "url": "https://github.com/rohid-hub/react-tailwindcss-typescript-vite-template"
-  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
