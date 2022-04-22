@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { SignIn } from '../interfaces/user/sign-in.interface';
 
 const Login = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, formState: { errors }, handleSubmit } = useForm();
   const onSubmit = (data: any) => console.log(data);
 
   return (
@@ -36,7 +36,8 @@ const Login = () => {
                     className="mt-3 border-none text-red-700 px-4 rounded-xl relative"
                     role="alert"
                   >
-                    <strong className="font-bold">erori ako ih ima?</strong>
+                    {errors.username?.type === 'required' && <strong className="font-bold">Username is required field</strong>}
+                    {errors.username?.type === 'maxLength' && <strong className="font-bold">Username must be less than 20 chars long</strong>}
                   </div>
                 </div>
               </div>
@@ -53,7 +54,8 @@ const Login = () => {
                     className="mt-3 border-none text-red-700 px-4 rounded-xl relative"
                     role="alert"
                   >
-                    <strong className="font-bold">erori ako ih ima?</strong>
+                    {errors.password?.type === 'required' && <strong className="font-bold">Password is required field</strong>}
+                    {errors.password?.type === 'maxLength' && <strong className="font-bold">Password must be less than 20 chars long</strong>}
                   </div>
                 </div>
               </div>
