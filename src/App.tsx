@@ -1,8 +1,10 @@
+import Login from './pages/Login';
+
 function App() {
 
   return (
     <div>
-      This is plain text
+      <Login />
     </div>
   );
 }
