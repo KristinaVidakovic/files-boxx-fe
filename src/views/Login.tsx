@@ -4,7 +4,7 @@ import { SignIn } from '../interfaces/user/sign-in.interface';
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = data => console.log(data);
+  const onSubmit = (data: any) => console.log(data);
 
   return (
     <div className="font-sans">
@@ -28,8 +28,8 @@ const Login = () => {
                 <input
                   type="text"
                   placeholder="Username"
-                  v-model="username"
                   className="mt-1 pl-3 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
+                  {...register("username", { required: true, maxLength: 20 })}
                 />
                 <div className="error-message" v-if="errors.username">
                   <div
@@ -45,8 +45,8 @@ const Login = () => {
                 <input
                   type="password"
                   placeholder="Password"
-                  v-model="password"
                   className="mt-1 pl-3 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
+                  {...register("password", { required: true, maxLength: 20 })}
                 />
                 <div className="error-message" v-if="errors.password">
                   <div
