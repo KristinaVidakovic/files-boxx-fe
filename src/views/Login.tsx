@@ -1,10 +1,19 @@
 import logo from '../assets/logo.png';
 import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
 import { SignIn } from '../interfaces/user/sign-in.interface';
 
+const schema = yup.object({
+  username: yup.string().required().min(8).max(20),
+  password: yup.string().required().min(8).max(20),
+}).required();
+
 const Login = () => {
-  const { register, formState: { errors }, handleSubmit } = useForm();
-  const onSubmit = (data: any) => console.log(data);
+  const { register, handleSubmit, formState: { errors } } = useForm<SignIn>({
+    resolver: yupResolver(schema)
+  });
+  const onSubmit = (data: SignIn) => console.log(data);
 
   return (
     <div className="font-sans">
@@ -29,17 +38,18 @@ const Login = () => {
                   type="text"
                   placeholder="Username"
                   className="mt-1 pl-3 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
-                  {...register("username", { required: true, maxLength: 20 })}
+                  {...register("username")}
                 />
-                <div className="error-message" v-if="errors.username">
-                  <div
-                    className="mt-3 border-none text-red-700 px-4 rounded-xl relative"
-                    role="alert"
-                  >
-                    {errors.username?.type === 'required' && <strong className="font-bold">Username is required field</strong>}
-                    {errors.username?.type === 'maxLength' && <strong className="font-bold">Username must be less than 20 chars long</strong>}
+                {errors.username && (
+                  <div className="error-message">
+                    <div
+                      className="mt-3 border-none text-red-700 px-4 rounded-xl relative"
+                      role="alert"
+                    >
+                      <strong className='font-bold'>{errors.username?.message}</strong>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
 
               <div className="mt-7">
@@ -47,17 +57,18 @@ const Login = () => {
                   type="password"
                   placeholder="Password"
                   className="mt-1 pl-3 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
-                  {...register("password", { required: true, maxLength: 20 })}
+                  {...register("password")}
                 />
-                <div className="error-message" v-if="errors.password">
-                  <div
-                    className="mt-3 border-none text-red-700 px-4 rounded-xl relative"
-                    role="alert"
-                  >
-                    {errors.password?.type === 'required' && <strong className="font-bold">Password is required field</strong>}
-                    {errors.password?.type === 'maxLength' && <strong className="font-bold">Password must be less than 20 chars long</strong>}
+                {errors.password && (
+                  <div className="error-message">
+                    <div
+                      className="mt-3 border-none text-red-700 px-4 rounded-xl relative"
+                      role="alert"
+                    >
+                      <strong className='font-bold'>{errors.password?.message}</strong>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
 
               <div className="mt-7">
