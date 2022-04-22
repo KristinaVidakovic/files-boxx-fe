@@ -1,24 +1,25 @@
 import logo from '../assets/logo.png';
+import { SignIn } from '../interfaces/user/sign-in.interface';
 
 const Login = () => {
   return (
     <div className="font-sans">
-    <div className="relative min-h-screen flex flex-col sm:justify-center items-center">
-      <div className="relative sm:max-w-sm w-full">
-        <div
-          className="card bg-blue-400 shadow-lg w-full h-full rounded-3xl absolute transform -rotate-6"
-        ></div>
-        <div
-          className="card bg-red-400 shadow-lg w-full h-full rounded-3xl absolute transform rotate-6"
-        ></div>
-        <div className="relative w-full rounded-3xl px-6 py-4 bg-gray-100 shadow-md">
-          <div className="flex items-center relative justify-center pt-4 w-full">
-            <img src={logo} className="w-12 h-12" />
-            <div className="ml-3">
-              <p className="font-medium text-gray-800">Welcome to FilesBoxx</p>
+      <div className="relative min-h-screen flex flex-col sm:justify-center items-center">
+        <div className="relative sm:max-w-sm w-full">
+          <div
+            className="card bg-blue-400 shadow-lg w-full h-full rounded-3xl absolute transform -rotate-6"
+          ></div>
+          <div
+            className="card bg-red-400 shadow-lg w-full h-full rounded-3xl absolute transform rotate-6"
+          ></div>
+          <div className="relative w-full rounded-3xl px-6 py-4 bg-gray-100 shadow-md">
+            <div className="flex items-center relative justify-center pt-4 w-full">
+              <img src={logo} className="w-12 h-12" />
+              <div className="ml-3">
+                <p className="font-medium text-gray-800">Welcome to FilesBoxx</p>
+              </div>
             </div>
-          </div>
-          <form method="#" action="#" className="mt-10">
+            <form method="#" action="#" className="mt-10">
             <div>
               <input
                 type="text"
@@ -69,10 +70,10 @@ const Login = () => {
               </div>
             </div>
           </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   )
 }
 
