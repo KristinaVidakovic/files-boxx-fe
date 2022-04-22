@@ -27,7 +27,7 @@ const Login = () => {
           ></div>
           <div className="relative w-full rounded-3xl px-6 py-4 bg-gray-100 shadow-md">
             <div className="flex items-center relative justify-center pt-4 w-full">
-              <img src={logo} className="w-12 h-12" />
+              <img src={logo} className="w-12 h-12 -rotate-15" />
               <div className="ml-3">
                 <p className="font-medium text-gray-800">Welcome to FilesBoxx</p>
               </div>

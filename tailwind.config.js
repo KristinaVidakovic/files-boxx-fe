@@ -3,7 +3,11 @@ module.exports = {
   purge: ["./src/**/*.{ts,tsx,js,jsx}", "./index.html"],
   darkMode: true, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      rotate: {
+        '-15': '-15deg',
+      }
+    }
   },
   variants: {
     extend: {},
