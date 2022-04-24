@@ -15,18 +15,11 @@ const schema = yup.object({
 }).required();
 
 const Login : React.FC = () => {
-  const [id, setId] = useState("");
+  const [id, setId] = useState("65f3c08f-a6ea-4ab9-9d7a-b3385d8abd17");
   const [info, setInfo] = useState("");
-
   const formatResponse = (res: any) => {
     return JSON.stringify(res, null, 2);
   };
-
-  const { register, handleSubmit, formState: { errors } } = useForm<SignIn>({
-    resolver: yupResolver(schema)
-  });
-  const onSubmit = (data: SignIn) => console.log(data);
-
   const { isLoading: isLoadingUserData, refetch: getUserInfoById } = useQuery<UserInfoById, Error>(
     "query-user-by-id",
     async () => {
@@ -44,11 +37,21 @@ const Login : React.FC = () => {
     }
   );
 
+  const { register, handleSubmit, formState: { errors } } = useForm<SignIn>({
+    resolver: yupResolver(schema)
+  });
+  const onSubmit = (data: SignIn) => { 
+    console.log('usao sam...');
+    getDataById();
+    console.log(id, info);
+    console.log(data);
+  };
+
   useEffect(() => {
     if (isLoadingUserData) setInfo("Loading...");
   }, [isLoadingUserData]);
 
-  function getDataById() {
+  const getDataById = () => {
     if (id) {
       try {
         getUserInfoById();
@@ -117,7 +120,6 @@ const Login : React.FC = () => {
               <div className="mt-7">
                 <button
                   className="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
-                  onClick={getDataById}
                 >Login</button>
               </div>
 
@@ -134,6 +136,9 @@ const Login : React.FC = () => {
           </div>
         </div>
       </div>
+
+      {info}
+      {id}
     </div>
   )
 }
