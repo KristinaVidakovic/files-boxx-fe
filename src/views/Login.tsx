@@ -7,6 +7,7 @@ import * as yup from "yup";
 import { useQuery, useMutation } from "react-query";
 import { SignIn } from '../interfaces/user/sign-in.interface';
 import AxiosService from '../api/request';
+import { toast } from 'react-toastify';
 
 const schema = yup.object({
   username: yup.string().required().min(8).max(20),
@@ -20,6 +21,13 @@ const Login : React.FC = () => {
   const formatResponse = (res: any) => {
     return JSON.stringify(res, null, 2);
   };
+
+  const errorNotification = (errMsg: string) => {
+    toast.error(errMsg, {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  }
+
   const { isLoading: isTryingToSignIn, mutate: signInUser } = useMutation<any, Error>(
     async () => {
       return await AxiosService.signIn(
@@ -34,6 +42,7 @@ const Login : React.FC = () => {
       },
       onError: (err: any) => {
         setPostResult(formatResponse(err.response?.data || err));
+        errorNotification(err.response?.data.message);
       },
     }
   );
