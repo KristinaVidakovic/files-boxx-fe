@@ -55,7 +55,9 @@ const Login : React.FC = () => {
   const onSubmit = async(data: SignIn) => {
     setUsername(data.username);
     setPassword(data.password);
+    console.log('saljem...');
     postData();
+    console.log(postResult);
   };
 
   return (
