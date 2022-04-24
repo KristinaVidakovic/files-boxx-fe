@@ -15,6 +15,9 @@ const Login = () => {
     resolver: yupResolver(schema)
   });
   const onSubmit = (data: SignIn) => console.log(data);
+  const { data, error, isFetching } = useQuery(["GET", "/character", {}]);
+
+  console.log('Ovo je data?', data);
 
   return (
     <div className="font-sans">
