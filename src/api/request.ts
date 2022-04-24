@@ -2,6 +2,9 @@ import axios, { Method, AxiosResponse } from "axios";
 
 const api = axios.create({
   baseURL: process.env.BASE_URL,
+  headers: {
+    "Content-type": "application/json",
+  },
 });
 
 const request = <T>(
