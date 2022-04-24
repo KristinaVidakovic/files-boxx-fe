@@ -4,8 +4,7 @@ import logo from '../assets/logo.png';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-import { useQuery } from "react-query";
-import { UserInfoById } from '../interfaces/user/user-info-by-id.interface';
+import { useQuery, useMutation } from "react-query";
 import { SignIn } from '../interfaces/user/sign-in.interface';
 import AxiosService from '../api/request';
 
@@ -15,51 +14,49 @@ const schema = yup.object({
 }).required();
 
 const Login : React.FC = () => {
-  const [id, setId] = useState("65f3c08f-a6ea-4ab9-9d7a-b3385d8abd17");
-  const [info, setInfo] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [postResult, setPostResult] = useState<string | null>(null);
   const formatResponse = (res: any) => {
     return JSON.stringify(res, null, 2);
   };
-  const { isLoading: isLoadingUserData, refetch: getUserInfoById } = useQuery<UserInfoById, Error>(
-    "query-user-by-id",
+  const { isLoading: isTryingToSignIn, mutate: signInUser } = useMutation<any, Error>(
     async () => {
-      return await AxiosService.getUserById(id);
+      return await AxiosService.signIn(
+        {
+          username: username,
+          password: password
+        });
     },
     {
-      enabled: false,
-      retry: 1,
       onSuccess: (res) => {
-        setInfo(formatResponse(res));
+        setPostResult(formatResponse(res));
       },
       onError: (err: any) => {
-        setInfo(formatResponse(err.response?.data || err));
+        setPostResult(formatResponse(err.response?.data || err));
       },
     }
   );
+  useEffect(() => {
+    if (isTryingToSignIn) setPostResult("Logging in...");
+  }, [isTryingToSignIn]);
+
+  const postData = () => {
+    try {
+      signInUser();
+    } catch (err) {
+      setPostResult(formatResponse(err));
+    }
+  }
 
   const { register, handleSubmit, formState: { errors } } = useForm<SignIn>({
     resolver: yupResolver(schema)
   });
-  const onSubmit = (data: SignIn) => { 
-    console.log('usao sam...');
-    getDataById();
-    console.log(id, info);
-    console.log(data);
+  const onSubmit = async(data: SignIn) => {
+    setUsername(data.username);
+    setPassword(data.password);
+    postData();
   };
-
-  useEffect(() => {
-    if (isLoadingUserData) setInfo("Loading...");
-  }, [isLoadingUserData]);
-
-  const getDataById = () => {
-    if (id) {
-      try {
-        getUserInfoById();
-      } catch (err) {
-        setInfo(formatResponse(err));
-      }
-    }
-  }
 
   return (
     <div className="font-sans">
@@ -136,9 +133,6 @@ const Login : React.FC = () => {
           </div>
         </div>
       </div>
-
-      {info}
-      {id}
     </div>
   )
 }
