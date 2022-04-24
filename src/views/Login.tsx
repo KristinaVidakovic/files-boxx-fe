@@ -1,20 +1,48 @@
+
+import { useState } from 'react';
 import logo from '../assets/logo.png';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-import { SignIn } from '../interfaces/user/sign-in.interface';
 import { useQuery } from "react-query";
+import { UserInfoById } from '../interfaces/user/user-info-by-id.interface';
+import { SignIn } from '../interfaces/user/sign-in.interface';
+import AxiosService from '../api/request';
 
 const schema = yup.object({
   username: yup.string().required().min(8).max(20),
   password: yup.string().required().min(8).max(20),
 }).required();
 
-const Login = () => {
+const Login : React.FC = () => {
+  const [id, setId] = useState("");
+  const [info, setInfo] = useState("");
+
+  const formatResponse = (res: any) => {
+    return JSON.stringify(res, null, 2);
+  };
+
   const { register, handleSubmit, formState: { errors } } = useForm<SignIn>({
     resolver: yupResolver(schema)
   });
   const onSubmit = (data: SignIn) => console.log(data);
+
+  const { isLoading: isLoadingUserData, refetch: getUserInfoById } = useQuery<UserInfoById, Error>(
+    "query-user-by-id",
+    async () => {
+      return await AxiosService.getUserById(id);
+    },
+    {
+      enabled: false,
+      retry: 1,
+      onSuccess: (res) => {
+        setInfo(formatResponse(res));
+      },
+      onError: (err: any) => {
+        setInfo(formatResponse(err.response?.data || err));
+      },
+    }
+  );
 
   return (
     <div className="font-sans">
