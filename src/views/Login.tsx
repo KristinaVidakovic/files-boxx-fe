@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import logo from '../assets/logo.png';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -43,6 +43,20 @@ const Login : React.FC = () => {
       },
     }
   );
+
+  useEffect(() => {
+    if (isLoadingUserData) setInfo("Loading...");
+  }, [isLoadingUserData]);
+
+  function getDataById() {
+    if (id) {
+      try {
+        getUserInfoById();
+      } catch (err) {
+        setInfo(formatResponse(err));
+      }
+    }
+  }
 
   return (
     <div className="font-sans">
@@ -103,6 +117,7 @@ const Login : React.FC = () => {
               <div className="mt-7">
                 <button
                   className="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out transform hover:-translate-x hover:scale-105"
+                  onClick={getDataById}
                 >Login</button>
               </div>
 
