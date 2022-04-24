@@ -1,6 +1,8 @@
 import { createRoot } from 'react-dom/client';
 import "tailwindcss/tailwind.css";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import App from "./App";
 
 const queryClient = new QueryClient({
@@ -20,5 +22,6 @@ const root = createRoot(container!); // createRoot(container!) if you use TypeSc
 root.render(
   <QueryClientProvider client={queryClient}>
     <App />
+    <ToastContainer />
   </QueryClientProvider>
 );
