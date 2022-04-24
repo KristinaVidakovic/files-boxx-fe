@@ -17,8 +17,6 @@ const Login = () => {
   const onSubmit = (data: SignIn) => console.log(data);
   const { data, error, isFetching } = useQuery(["GET", "/character", {}]);
 
-  console.log('Ovo je data?', data);
-
   return (
     <div className="font-sans">
       <div className="relative min-h-screen flex flex-col sm:justify-center items-center">
