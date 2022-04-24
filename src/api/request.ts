@@ -2,7 +2,7 @@ import axios from "axios";
 import { UserInfoById } from "../interfaces/user/user-info-by-id.interface";
 
 const api = axios.create({
-  baseURL: process.env.BASE_URL,
+  baseURL: import.meta.env.VITE_BASE_URL,
   headers: {
     "Content-type": "application/json",
   },
