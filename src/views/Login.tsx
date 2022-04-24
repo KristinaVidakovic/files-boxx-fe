@@ -15,13 +15,6 @@ const Login = () => {
     resolver: yupResolver(schema)
   });
   const onSubmit = (data: SignIn) => console.log(data);
-  const { data, error, isFetching } = useQuery(["GET", "/users/65f3c08f-a6ea-4ab9-9d7a-b3385d8abd17", () => {}]);
-
-  if (isFetching) return <p>Is loading...</p>;
-
-  if (error) return <p>${error}</p>;
-
-  console.log(data);
 
   return (
     <div className="font-sans">
