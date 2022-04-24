@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import { SignIn } from '../interfaces/user/sign-in.interface';
+import { useQuery } from "react-query";
 
 const schema = yup.object({
   username: yup.string().required().min(8).max(20),
