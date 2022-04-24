@@ -1,4 +1,5 @@
-import axios, { Method, AxiosResponse } from "axios";
+import axios from "axios";
+import { UserInfoById } from "../interfaces/user/user-info-by-id.interface";
 
 const api = axios.create({
   baseURL: process.env.BASE_URL,
@@ -7,20 +8,13 @@ const api = axios.create({
   },
 });
 
-const request = <T>(
-  method: Method,
-  url: string,
-  params: any
-): Promise<AxiosResponse<T>> => {
-  return api.request<T>({
-    method,
-    url,
-    params,
-  });
-};
+const getUserById = async (id: any) => {
+  const response = await api.get<UserInfoById>(`/users/${id}`);
+  return response.data;
+}
 
-// Define a default query function that will receive the query key
-export const defaultQueryFn = async ({ queryKey }: any): Promise<unknown> => {
-  const data = await request(queryKey[0], queryKey[1], queryKey[2]);
-  return data;
-};
+const AxiosService = {
+  getUserById,
+}
+
+export default AxiosService;
